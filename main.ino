@@ -211,6 +211,7 @@ void loop(){
       break;
     case '>': // send message
       lcd.clear(); // clear screen and reset cursor position
+      cursor = 0;
       break;
     case ' ': // confirm t9 character | space (if last character was confirmed) | backspace (if capital shifted)
       typeKey = true;
