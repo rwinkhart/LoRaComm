@@ -19,10 +19,11 @@ const byte colPins[COLS] = {9, 8, 7, 6}; //connect to the column pinouts of the 
 // create keypad object
 const Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
-// declare variable to store last keypress
+// declare variable to store latest keypress
 char key;
 
 // declare variables for tracking t9 multipresses
+bool numeric; // tracks whether to use numeric keyboard mode
 bool typeKey; // tracks whether the current keypress should be visually typed
 char t9key;
 uint8_t multipress[2] = {17, 0}; // {key #, press count}
@@ -58,64 +59,93 @@ void updateMultipress(uint8_t keyNumber) {
   multipress[1] = pressCount;
 }
 
-char calcT9(uint8_t keyNum, uint8_t pressCount) {
+char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
   char trio[3];
 
   // translate key # to letters
   switch (keyNum) {
   case 1:
+    if (numeric) {
+      return '1';
+    }
     trio[0] = 'A';
     trio[1] = 'B';
     trio[2] = 'C';
     break;
   case 2:
+    if (numeric) {
+      return '2';
+    }
     trio[0] = 'D';
     trio[1] = 'E';
     trio[2] = 'F';
     break;
   case 3:
+    if (numeric) {
+      return '3';
+    }
     trio[0] = 'G';
     trio[1] = 'H';
     trio[2] = 'I';
     break;
   case 5:
+    if (numeric) {
+      return '4';
+    }
     trio[0] = 'J';
     trio[1] = 'K';
     trio[2] = 'L';
     break;
   case 6:
+    if (numeric) {
+      return '5';
+    }
     trio[0] = 'M';
     trio[1] = 'N';
     trio[2] = 'O';
     break;
   case 7:
+    if (numeric) {
+      return '6';
+    }
     trio[0] = 'P';
     trio[1] = 'Q';
     trio[2] = 'R';
     break;
   case 9:
+    if (numeric) {
+      return '7';
+    }
     trio[0] = 'S';
     trio[1] = 'T';
     trio[2] = 'U';
     break;
   case 10:
+    if (numeric) {
+      return '8';
+    }
     trio[0] = 'V';
     trio[1] = 'W';
     trio[2] = 'X';
     break;
   case 11:
+    if (numeric) {
+      return '9';
+    }
     trio[0] = 'Y';
     trio[1] = 'Z';
     trio[2] = ',';
     break;
   case 14:
+    if (numeric) {
+      return '0';
+    }
     trio[0] = '.';
     trio[1] = '!';
     trio[2] = '?';
     break;
   }
     
-  Serial.println(keyNum);
   return trio[pressCount-1];
 }
 
@@ -147,6 +177,7 @@ void loop(){
       updateMultipress(3);
       break;
     case 'a': // alphabetical keyboard
+      numeric = false;
       break;
     case 'J': // J, K, L | 4
       updateMultipress(5);
@@ -158,6 +189,7 @@ void loop(){
       updateMultipress(7);
       break;
     case 'n': // numeric keyboard
+      numeric = true;
       break;
     case 'S': // S, T, U | 7
       updateMultipress(9);
@@ -184,7 +216,7 @@ void loop(){
     }
 
     if (typeKey) {
-      t9key = calcT9(multipress[0], multipress[1]);
+      t9key = calcT9(multipress[0], multipress[1], numeric);
       multipress[1] = 0;
 
       // print t9key at cursor location
