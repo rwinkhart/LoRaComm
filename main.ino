@@ -23,6 +23,7 @@ const Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 char key;
 
 // declare variables for tracking t9 multipresses
+bool capitalShift; // tracks whether the shift key was pressed
 bool numeric; // tracks whether to use numeric keyboard mode
 bool typeKey; // tracks whether the current keypress should be visually typed
 char t9key;
@@ -68,72 +69,72 @@ char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
     if (numeric) {
       return '1';
     }
-    trio[0] = 'A';
-    trio[1] = 'B';
-    trio[2] = 'C';
+    trio[0] = 'a';
+    trio[1] = 'b';
+    trio[2] = 'c';
     break;
   case 2:
     if (numeric) {
       return '2';
     }
-    trio[0] = 'D';
-    trio[1] = 'E';
-    trio[2] = 'F';
+    trio[0] = 'd';
+    trio[1] = 'e';
+    trio[2] = 'f';
     break;
   case 3:
     if (numeric) {
       return '3';
     }
-    trio[0] = 'G';
-    trio[1] = 'H';
-    trio[2] = 'I';
+    trio[0] = 'g';
+    trio[1] = 'h';
+    trio[2] = 'i';
     break;
   case 5:
     if (numeric) {
       return '4';
     }
-    trio[0] = 'J';
-    trio[1] = 'K';
-    trio[2] = 'L';
+    trio[0] = 'j';
+    trio[1] = 'k';
+    trio[2] = 'l';
     break;
   case 6:
     if (numeric) {
       return '5';
     }
-    trio[0] = 'M';
-    trio[1] = 'N';
-    trio[2] = 'O';
+    trio[0] = 'm';
+    trio[1] = 'n';
+    trio[2] = 'o';
     break;
   case 7:
     if (numeric) {
       return '6';
     }
-    trio[0] = 'P';
-    trio[1] = 'Q';
-    trio[2] = 'R';
+    trio[0] = 'p';
+    trio[1] = 'q';
+    trio[2] = 'r';
     break;
   case 9:
     if (numeric) {
       return '7';
     }
-    trio[0] = 'S';
-    trio[1] = 'T';
-    trio[2] = 'U';
+    trio[0] = 's';
+    trio[1] = 't';
+    trio[2] = 'u';
     break;
   case 10:
     if (numeric) {
       return '8';
     }
-    trio[0] = 'V';
-    trio[1] = 'W';
-    trio[2] = 'X';
+    trio[0] = 'v';
+    trio[1] = 'w';
+    trio[2] = 'x';
     break;
   case 11:
     if (numeric) {
       return '9';
     }
-    trio[0] = 'Y';
-    trio[1] = 'Z';
+    trio[0] = 'y';
+    trio[1] = 'z';
     trio[2] = ',';
     break;
   case 14:
@@ -201,6 +202,7 @@ void loop(){
       updateMultipress(11);
       break;
     case '^': // capital shift
+      capitalShift = true;
       break;
     case '@': // check received
       break;
@@ -218,6 +220,14 @@ void loop(){
     if (typeKey) {
       t9key = calcT9(multipress[0], multipress[1], numeric);
       multipress[1] = 0;
+
+      // capitalize t9key if necessary
+      if (capitalShift) {
+        if (isAlpha(t9key)) {
+          t9key = toUpperCase(t9key);
+        }
+        capitalShift = false;
+      }
 
       // print t9key at cursor location
       if (cursor == 17) {
