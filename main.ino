@@ -1,6 +1,11 @@
 #include <Keypad.h>
 #include <LiquidCrystal.h>
 
+// OVERALL TODO
+// Add visual cursor
+// Send/receive LoRa messages
+// Allow sending text received over serial (from computer if beginning with \x1f)
+
 //****************START KEYPAD****************//
 // define keypad matrix
 const byte ROWS = 4; // four rows
@@ -13,8 +18,8 @@ const char keys[ROWS][COLS] = {
 };
 
 // define keypad pins
-const byte rowPins[ROWS] = {13, 12, 11, 10}; //connect to the row pinouts of the keypad
-const byte colPins[COLS] = {9, 8, 7, 6}; //connect to the column pinouts of the keypad
+const byte rowPins[ROWS] = {13, 12, 11, 10}; // connect to the row pinouts of the keypad
+const byte colPins[COLS] = {9, 8, 7, 6}; // connect to the column pinouts of the keypad
 
 // create keypad object
 const Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
@@ -36,8 +41,29 @@ uint8_t multipress[2] = {17, 0}; // {key #, press count}
 LiquidCrystal lcd(14, 15, 16, 17, 18, 19);
 
 // declare variable tracking cursor position
-uint8_t cursor = 1;
+uint8_t cursor = 1; // set to 1 for easy non-zero based position tracking
 //****************END LCD****************//
+
+void backspace() {
+  uint8_t cursorX;
+  uint8_t cursorY;
+
+  cursor--;
+  cursorX = cursor;
+  if (cursorX > 16) {
+     cursorY = 1;
+     cursorX = cursorX-16;
+  } else {
+    cursorY = 0;
+  }
+
+  // set cursor to previous position (subtract one since cursor is numbered from 1)
+  lcd.setCursor(cursorX-1, cursorY);
+  // print a space
+  lcd.print(' ');
+  // set cursor back to the newly blank space
+  lcd.setCursor(cursorX-1, cursorY);
+}
 
 void updateMultipress(uint8_t keyNumber) {
   uint8_t pressCount;
@@ -145,8 +171,10 @@ char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
     trio[1] = '!';
     trio[2] = '?';
     break;
+  case 16:
+    trio[0] = ' '; // rest of trio does not need to be defined (once multipress exceeds 1 for a space, it is printed and multipress is reset)
   }
-    
+
   return trio[pressCount-1];
 }
 
@@ -158,7 +186,7 @@ void setup(){
   lcd.begin(16, 2);
   lcd.clear();
 }
-  
+
 void loop(){
   // always listen for keypresses
   key = keypad.getKey();
@@ -211,31 +239,43 @@ void loop(){
       break;
     case '>': // send message
       lcd.clear(); // clear screen and reset cursor position
-      cursor = 0;
+      cursor = 1;
       break;
     case ' ': // confirm t9 character | space (if last character was confirmed) | backspace (if capital shifted)
+      if (multipress[1] == 0) {
+        // if last character was confirmed, send a space
+        updateMultipress(16);
+      }
       typeKey = true;
-      break;                                                                              
+      break;
     }
 
     if (typeKey) {
       t9key = calcT9(multipress[0], multipress[1], numeric);
       multipress[1] = 0;
 
-      // capitalize t9key if necessary
       if (capitalShift) {
-        if (isAlpha(t9key)) {
+        // disable capitalShift for next iteration
+        capitalShift = false;
+
+        if (t9key == ' ') {
+          // print a backspace and set the cursor to the appropriate position
+          backspace();
+          return;
+        } else if (isAlpha(t9key)) {
+          // capitalize t9key if necessary
           t9key = toUpperCase(t9key);
         }
-        capitalShift = false;
       }
 
-      // print t9key at cursor location
-      if (cursor == 17) {
-        lcd.setCursor(0, 1);
+      // print t9key at cursor location and increment cursor position tracker (only if cursor is not already at max position)
+      if (cursor <= 32) {
+        if (cursor == 17) {
+          lcd.setCursor(0, 1);
+        }
+        lcd.print(t9key);
+        cursor++;
       }
-      lcd.print(t9key);
-      cursor++;
     }
 
   }
