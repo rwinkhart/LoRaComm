@@ -1,15 +1,15 @@
 // get address of partner LoRa module
 uint8_t getPeerAddress() {
   // clear serial buffer prior to address query
-  clearSerialBuffer();
+  clearSloraBuffer();
 
-  Serial.println("AT+ADDRESS?");
+  Slora.println("AT+ADDRESS?");
 
-  while (!Serial.available()) {
+  while (!Slora.available()) {
     // wait until serial response is received
   }
 
-  if (Serial.readString().indexOf("ADDRESS=2") > 0) {
+  if (Slora.readString().indexOf("ADDRESS=2") > 0) {
     return 1;
   } else {
     return 2;
@@ -19,16 +19,32 @@ uint8_t getPeerAddress() {
 
 // send message to partner LoRa module
 void sendToPeer(const char* message) {
-  Serial.print("AT+SEND=");
-  Serial.print(peerAddress);
-  Serial.print(",");
-  Serial.print(strlen(message));
-  Serial.print(",");
-  Serial.println(message);
+  Slora.print("AT+SEND=");
+  Slora.print(peerAddress);
+  Slora.print(",");
+  Slora.print(strlen(message));
+  Slora.print(",");
+  Slora.println(message);
 
   // clear serial buffer as to not interpret as incoming message
   delay(500); // TODO find a more sophisticated way to delay
-  clearSerialBuffer();
+  clearSloraBuffer();
+}
+
+// return parsed message from incoming LoRa message
+String parseMessage(String message) {
+  String parsed = message.substring(0, message.lastIndexOf(',', message.lastIndexOf(',') - 1));
+  int secondComma = parsed.indexOf(',', message.indexOf(',') + 1);
+  parsed = parsed.substring(secondComma+1);
+
+
+  return parsed;
+}
+
+void clearSloraBuffer() {
+  while (Slora.available() > 0) {
+    Slora.read();
+  }
 }
 
 void clearSerialBuffer() {

@@ -1,5 +1,6 @@
 #include <Keypad.h>
 #include <LiquidCrystal.h>
+#include <SoftwareSerial.h>
 
 //****************START KEYPAD****************//
 // define keypad matrix
@@ -42,6 +43,11 @@ uint8_t cursor = 1; // set to 1 for easy non-zero based position tracking
 //****************START LORA****************//
 // declare message buffer
 char messageBuffer[33];
+
+// configure software serial
+const byte SloraRX = 2;
+const byte SloraTX = 3;
+SoftwareSerial Slora = SoftwareSerial(SloraRX, SloraTX);
 
 uint8_t peerAddress;
 const uint8_t LED = 4;

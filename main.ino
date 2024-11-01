@@ -1,12 +1,15 @@
 void setup(){
-  // enable serial console
-   Serial.begin(9600);
-
-  // set LED pin mode
+  // set pin modes
   pinMode(LED, OUTPUT);
+  pinMode(SloraRX, INPUT);
+  pinMode(SloraTX, OUTPUT);
+
+  // enable serial consoles
+  Serial.begin(9600);
+  Slora.begin(9600);
 
   // store address of LoRa peer
-  //peerAddress = getPeerAddress();
+  peerAddress = getPeerAddress();
 
   // define LCD columns and rows (and clear it)
   lcd.begin(16, 2);
@@ -14,12 +17,22 @@ void setup(){
 }
 
 void loop(){
-  // always listen for incoming messages
-  if (Serial.available()) {
-    clearSerialBuffer();
+  // always listen for incoming LoRa messages
+  if (Slora.available()) {
+    // echo message over hardware serial for GUI
+    Serial.println(parseMessage(Slora.readString()));
+
+    clearSloraBuffer();
     digitalWrite(LED, 1);
     delay(1000);
     digitalWrite(LED, 0);
+  }
+
+  // always listen for requests from GUI
+  // currently, this means forwarding messages from GUI over Slora
+  if (Serial.available()) {
+    sendToPeer(Serial.readString().c_str());
+    clearSerialBuffer();
   }
 
   // always listen for keypresses
