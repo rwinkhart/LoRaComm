@@ -1,3 +1,4 @@
+#include <DES.h>
 #include <Keypad.h>
 #include <LiquidCrystal.h>
 #include <SoftwareSerial.h>
@@ -42,13 +43,22 @@ uint8_t cursor = 1; // set to 1 for easy non-zero based position tracking
 
 //****************START LORA****************//
 // declare message buffer
-char messageBuffer[33];
+unsigned char messageBuffer[33];
 
 // configure software serial
 const byte SloraRX = 2;
 const byte SloraTX = 3;
 SoftwareSerial Slora = SoftwareSerial(SloraRX, SloraTX);
 
+// configure 3DES
+DES des;
+byte desKey[] = { 
+              0x3b, 0x38, 0x98, 0x37, 0x15, 0x20, 0xf7, 0x5e, // key A
+              0x92, 0x2f, 0xb5, 0x1F, 0xc7, 0x1f, 0x43, 0x6e, // key B
+              0x3b, 0x38, 0x98, 0x37, 0x15, 0x20, 0xf7, 0x5e, // key C
+            };
+
+// declare misc. variables/constants
 uint8_t peerAddress;
 const uint8_t LED = 4;
 //****************END LORA****************//
