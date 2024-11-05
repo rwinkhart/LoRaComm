@@ -1,0 +1,337 @@
+[
+    {
+        "id": "09924cb364b4bda0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "baa84915725afe13",
+        "type": "serial-port",
+        "name": "Arduino",
+        "serialport": "/dev/ttyACM1",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "7d1bd7bbc92bf5a1",
+        "type": "ui_tab",
+        "name": "LoRaComm Client",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0b09f7ad4d44ab34",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-custom",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#d65d0e",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#4B7930",
+                    "value": "#d65d0e",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#d65d0e",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#272727",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ebdbb2",
+                    "edited": true
+                },
+                "group-textColor": {
+                    "value": "#f2853e",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#655b53",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#655b53",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#ebdbb2",
+                    "edited": true
+                },
+                "widget-backgroundColor": {
+                    "value": "#d65d0e",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#655b53",
+                    "edited": true
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "462871a2e265a875",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "7d1bd7bbc92bf5a1",
+        "order": 3,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5bfc2e457122e83a",
+        "type": "ui_text_input",
+        "z": "09924cb364b4bda0",
+        "name": "TypedMessage",
+        "label": "",
+        "tooltip": "",
+        "group": "462871a2e265a875",
+        "order": 0,
+        "width": "24",
+        "height": "2",
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "You @ ",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "str",
+        "x": 240,
+        "y": 120,
+        "wires": [
+            [
+                "2dcd9f7c13cc1903",
+                "84a109984807fb10",
+                "dc8dac01f7faef2f"
+            ]
+        ]
+    },
+    {
+        "id": "2dcd9f7c13cc1903",
+        "type": "change",
+        "z": "09924cb364b4bda0",
+        "name": "ClearTextInput",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "5bfc2e457122e83a"
+            ]
+        ]
+    },
+    {
+        "id": "84a109984807fb10",
+        "type": "serial out",
+        "z": "09924cb364b4bda0",
+        "name": "Arduino RX",
+        "serial": "baa84915725afe13",
+        "x": 450,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "281a50982b789c4f",
+        "type": "serial in",
+        "z": "09924cb364b4bda0",
+        "name": "Arduino TX",
+        "serial": "baa84915725afe13",
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "dc8dac01f7faef2f"
+            ]
+        ]
+    },
+    {
+        "id": "b6018aefac665364",
+        "type": "ui_button",
+        "z": "09924cb364b4bda0",
+        "name": "",
+        "group": "462871a2e265a875",
+        "order": 1,
+        "width": "24",
+        "height": "1",
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "998526cdd8a9e151"
+            ]
+        ]
+    },
+    {
+        "id": "dc8dac01f7faef2f",
+        "type": "function",
+        "z": "09924cb364b4bda0",
+        "name": "Append input to global.received",
+        "func": "// get current global.received\nlet currentValue = global.get(\"received\") || \"\";\n\n// get current time\nlet currentTime = new Date().toLocaleTimeString();\n\n// determine send user based on msg.topic\nif (msg.topic != \"You @ \") {\n    msg.topic = \"Friend @ \";\n}\n\n// append input to global.received\nglobal.set(\"received\", currentValue + \"<br><br>\" + msg.topic + currentTime + \": \" + msg.payload);\n\n// set msg.payload to global.received\nmsg.payload = global.get(\"received\");\n\n// return updated msg\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 220,
+        "wires": [
+            [
+                "ea89460c9962218b"
+            ]
+        ]
+    },
+    {
+        "id": "ea89460c9962218b",
+        "type": "ui_text",
+        "z": "09924cb364b4bda0",
+        "group": "462871a2e265a875",
+        "order": 1,
+        "width": "24",
+        "height": "13",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 970,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "998526cdd8a9e151",
+        "type": "function",
+        "z": "09924cb364b4bda0",
+        "name": "ClearTextOutput",
+        "func": "// clear msg.payload and global.received\nglobal.set(\"received\", \"\");\nmsg.payload = \"\";\n\n// return updated msg\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 420,
+        "wires": [
+            [
+                "ea89460c9962218b"
+            ]
+        ]
+    },
+    {
+        "id": "a4ca67f56184fdcf",
+        "type": "ui_template",
+        "z": "09924cb364b4bda0",
+        "group": "462871a2e265a875",
+        "name": "CSS",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .nr-dashboard-text {\n        display: flex;\n        align-items: flex-end;\n    }\n\n    ui-card-panel, .md-button, .md-input, .nr-dashboard-text {\n        width: 100vw !important;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 210,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    }
+]
