@@ -28,21 +28,9 @@ void loop(){
     digitalWrite(LED, 0);
   }
 
-  // always listen for requests from GUI
-  // currently, this means forwarding messages from GUI over Slora
+  // always listen for requests from GUI (to forward over Slora)
   if (Serial.available()) {
-    String stringIn = Serial.readString();
-
-    // encryption demo
-    byte stringInEncBytes[32] = {0};
-    encrypt(stringIn, stringInEncBytes);
-    printArray(stringInEncBytes);
-
-    // decryption demo
-    byte stringInDecBytes[32] = {0};
-    decrypt(stringInEncBytes, stringInDecBytes);
-    printArray(stringInDecBytes);
-
+    sendToPeer(Serial.readString().c_str());
     clearSerialBuffer(); // avoid over-loading serial interface
   }
 
