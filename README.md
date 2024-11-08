@@ -30,7 +30,7 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
 Coming soon
 
 ### Keypad Matrix Legend
-Coming soon
+![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
 
 ### LoRa Module Programming
 All settings for the RYLR998 LoRa modules are left at factor defaults except for:
