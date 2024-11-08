@@ -79,7 +79,6 @@ void printArray(byte output[])
 }
 
 // send message to partner LoRa module
-// also listen for reply to ensure successful delivery
 void sendToPeer(const char* message) {
   // encrypt message prior to send
   byte messageEncBytes[33] = {0};

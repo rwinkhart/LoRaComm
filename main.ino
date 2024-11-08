@@ -30,14 +30,18 @@ void loop(){
       cursor = 1;
     } else {
       // not a reply
-      // flash notification LED
-      digitalWrite(LED, 1);
-      delay(1000);
-      digitalWrite(LED, 0);
-      // echo message over hardware serial for GUI
-      Serial.println(incoming);
-      // send reply to peer
-      sendToPeer("%OK\0");
+      if (!incoming.equals(incomingPrev)) {
+        // flash notification LED
+        digitalWrite(LED, 1);
+        delay(1000);
+        digitalWrite(LED, 0);
+        // echo message over hardware serial for GUI
+        Serial.println(incoming);
+        // store message
+        incomingPrev = incoming;
+      }
+        // send reply to peer regardless of whether message is duplicate
+        sendToPeer("%OK\0");
     }
 
     // clear Slora buffer to avoid overloading Slora serial

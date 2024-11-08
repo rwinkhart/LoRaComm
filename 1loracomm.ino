@@ -61,6 +61,7 @@ const byte SloraTX = 3;
 SoftwareSerial Slora = SoftwareSerial(SloraRX, SloraTX);
 
 // declare misc. variables/constants
+String incomingPrev;
 uint8_t peerAddress;
 const uint8_t LED = 4;
 //****************END LORA****************//
