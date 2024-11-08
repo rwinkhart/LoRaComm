@@ -81,7 +81,7 @@ void printArray(byte output[])
 // send message to partner LoRa module
 void sendToPeer(const char* message) {
   // encrypt message prior to send
-  byte messageEncBytes[32] = {0};
+  byte messageEncBytes[33] = {0};
   encrypt(String(message), messageEncBytes);
   String messageEncString = byteArrayToHexString(messageEncBytes);
 
