@@ -64,9 +64,7 @@ void determineMultipress(char key) {
     break;
   case '>': // send message
     sendToPeer(messageBuffer);
-    messageBuffer[0] = '\0';
-    lcd.clear(); // clear screen and reset cursor position
-    cursor = 1;
+    // do not clear messageBuffer or LCD until a reply is received
     break;
   case ' ': // confirm t9 character | space (if last character was confirmed) | backspace (if capital shifted)
     if (multipress[1] == 0) {

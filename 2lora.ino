@@ -79,6 +79,7 @@ void printArray(byte output[])
 }
 
 // send message to partner LoRa module
+// also listen for reply to ensure successful delivery
 void sendToPeer(const char* message) {
   // encrypt message prior to send
   byte messageEncBytes[33] = {0};
@@ -93,7 +94,9 @@ void sendToPeer(const char* message) {
   Slora.println(messageEncString);
 
   // clear slora buffer as to not interpret as incoming message
-  delay(500); // TODO find a more sophisticated way to delay
+  while (Slora.available() < 1) {
+    delay(25);
+  }
   clearSloraBuffer();
 }
 

@@ -19,13 +19,29 @@ void setup(){
 void loop(){
   // always listen for incoming LoRa messages
   if (Slora.available()) {
-    // echo message over hardware serial for GUI
-    Serial.println(parseMessage(Slora.readString()));
+    // store received message
+    String incoming = parseMessage(Slora.readString());
 
+    // check if message is a reply
+    if (incoming.equals("%OK")) {
+      // reply received; clear messagBuffer and LCD
+      messageBuffer[0] = '\0';
+      lcd.clear();
+      cursor = 1;
+    } else {
+      // not a reply
+      // flash notification LED
+      digitalWrite(LED, 1);
+      delay(1000);
+      digitalWrite(LED, 0);
+      // echo message over hardware serial for GUI
+      Serial.println(incoming);
+      // send reply to peer
+      sendToPeer("%OK\0");
+    }
+
+    // clear Slora buffer to avoid overloading Slora serial
     clearSloraBuffer();
-    digitalWrite(LED, 1);
-    delay(1000);
-    digitalWrite(LED, 0);
   }
 
   // always listen for requests from GUI (to forward over Slora)
