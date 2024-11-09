@@ -188,3 +188,11 @@ char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
 
   return trio[pressCount-1];
 }
+
+// block until a key is pressed
+void blockUntilKey() {
+  key = NO_KEY;
+  while(key == NO_KEY) {
+    key = keypad.getKey();
+  }
+}

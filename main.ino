@@ -22,7 +22,6 @@ void loop(){
     // store received message
     String incoming = parseMessage(Slora.readString());
 
-    // check if message is a reply
     if (incoming.equals("%OK")) {
       // reply received; clear messagBuffer and LCD
       messageBuffer[0] = '\0';
@@ -38,13 +37,21 @@ void loop(){
         digitalWrite(LED, 1);
         delay(1000);
         digitalWrite(LED, 0);
+        // send reply to peer
+        sendToPeer("%OK\0");
         // echo message over hardware serial for GUI
         Serial.println(incoming);
+        // print message to screen
+        if (!docked) {
+          writeToLCD(incoming.c_str(), true);
+          writeToLCD(messageBuffer, false);
+        }
         // store message
         incomingPrev = incoming;
-      }
-        // send reply to peer regardless of whether message is duplicate
+      } else {
+        // send reply to peer (even if duplicate)
         sendToPeer("%OK\0");
+      }
     }
 
     // clear Slora buffer to avoid overloading Slora serial
@@ -53,7 +60,18 @@ void loop(){
 
   // always listen for requests from GUI (to forward over Slora)
   if (Serial.available()) {
-    sendToPeer(Serial.readString().c_str());
+    String incoming = Serial.readString();
+    if (incoming.equals("%DOCK")) {
+        // toggle docked mode
+        docked = !docked;
+        if (docked == true) {
+          blinkLED(2, 100);
+        } else {
+          blinkLED(3, 100);
+        }
+      } else {
+        sendToPeer(incoming.c_str());
+      }
     clearSerialBuffer(); // avoid over-loading serial interface
   }
 

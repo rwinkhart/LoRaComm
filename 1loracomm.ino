@@ -49,10 +49,13 @@ LiquidCrystal lcd(14, 15, 16, 17, 18, 19);
 
 // declare variable tracking cursor position
 uint8_t cursor = 1; // set to 1 for easy non-zero based position tracking
+
+// track if using docked mode
+bool docked = false;
 //****************END LCD****************//
 
 //****************START LORA****************//
-// declare message buffer
+// declare message buffers
 unsigned char messageBuffer[33];
 
 // configure software serial

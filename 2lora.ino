@@ -14,13 +14,12 @@ uint8_t getPeerAddress() {
   } else {
     return 2;
   }
-  
 }
 
 // TODO remove trailing 0D 0A 00...
 void encrypt(String input, byte *outArray) {
-  byte in[33] = {0};
-  input.getBytes(in, input.length()+1);
+  byte in[33] = { 0 };
+  input.getBytes(in, input.length() + 1);
   // process the input in 8-byte blocks
   for (int i = 0; i < 32; i += 8) {
     des.tripleEncrypt(outArray + i, in + i, desKey);
@@ -40,17 +39,17 @@ void hexStringToByteArray(const String &hexString, byte *byteArray) {
 
   for (int i = 0; i < len; i += 2) {
     if (byteIndex >= 32) {
-      break; // prevent buffer overflow
+      break;  // prevent buffer overflow
     }
     String byteString = hexString.substring(i, i + 2);
-    byteArray[byteIndex++] = (byte) strtol(byteString.c_str(), NULL, 16);
+    byteArray[byteIndex++] = (byte)strtol(byteString.c_str(), NULL, 16);
   }
 }
 
 String byteArrayToHexString(const byte *byteArray) {
   String hexString;
   for (int i = 0; i < 32; i++) {
-    if (byteArray[i] < 16) hexString += "0"; // Add leading zero for single digit hex values
+    if (byteArray[i] < 16) hexString += "0";  // Add leading zero for single digit hex values
     hexString += String(byteArray[i], HEX);
   }
   return hexString;
@@ -59,20 +58,20 @@ String byteArrayToHexString(const byte *byteArray) {
 String byteArrayToString(const byte *byteArray) {
   String result = "";
   for (int i = 0; i < 32; i++) {
-    result += (char) byteArray[i];
+    result += (char)byteArray[i];
   }
   return result;
 }
 
 // send message to partner LoRa module
-void sendToPeer(const char* message) {
+void sendToPeer(const char *message) {
   // ensure message is not blank
   if (message[0] == '\0') {
     return;
   }
 
   // encrypt message prior to send
-  byte messageEncBytes[33] = {0};
+  byte messageEncBytes[33] = { 0 };
   encrypt(String(message), messageEncBytes);
   String messageEncString = byteArrayToHexString(messageEncBytes);
 
@@ -94,12 +93,12 @@ void sendToPeer(const char* message) {
 String parseMessage(String message) {
   String parsed = message.substring(0, message.lastIndexOf(',', message.lastIndexOf(',') - 1));
   int secondComma = parsed.indexOf(',', message.indexOf(',') + 1);
-  parsed = parsed.substring(secondComma+1);
+  parsed = parsed.substring(secondComma + 1);
 
   // decrypt message prior to return
-  byte parsedBytes[32] = {0};
+  byte parsedBytes[32] = { 0 };
   hexStringToByteArray(parsed, parsedBytes);
-  byte decBytes[32] = {0};
+  byte decBytes[32] = { 0 };
   decrypt(parsedBytes, decBytes);
   String parsedFinal = byteArrayToString(decBytes);
 
