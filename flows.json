@@ -263,8 +263,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 220,
+        "x": 830,
+        "y": 340,
         "wires": [
             [
                 "ea89460c9962218b"
@@ -289,7 +289,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 1150,
-        "y": 220,
+        "y": 340,
         "wires": []
     },
     {
@@ -338,7 +338,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "StripInvalidCharacters",
-        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\nreturn msg;",
+        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    process.exit();\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
