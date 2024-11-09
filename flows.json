@@ -258,7 +258,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "Append input to global.received",
-        "func": "// ensure msg.payload is not a reply\nif (msg.payload.startsWith(\"%OK\")) {\n    process.exit();\n}\n\n// get current global.received\nlet currentValue = global.get(\"received\") || \"\";\n\n// get current time\nlet currentTime = new Date().toLocaleTimeString();\n\n// determine send user based on msg.topic\nif (msg.topic != \"You @ \") {\n    msg.topic = \"Friend @ \";\n} else if (msg.payload.length > 32) {\n    // when sending a message from GUI,\n    // ensure it does not exceed 32 characters in length\n    msg.payload = msg.payload.slice(0, 32);\n}\n\n// append input to global.received\nglobal.set(\"received\", currentValue + \"<br><br>\" + msg.topic + currentTime + \": \" + msg.payload);\n\n// set msg.payload to global.received\nmsg.payload = global.get(\"received\");\n\n// return updated msg\nreturn msg;",
+        "func": "// ensure msg.payload is not a reply\nif (msg.payload.startsWith(\"%OK\")) {\n    return;\n}\n\n// get current global.received\nlet currentValue = global.get(\"received\") || \"\";\n\n// get current time\nlet currentTime = new Date().toLocaleTimeString();\n\n// determine send user based on msg.topic\nif (msg.topic != \"You @ \") {\n    msg.topic = \"Friend @ \";\n} else if (msg.payload.length > 32) {\n    // when sending a message from GUI,\n    // ensure it does not exceed 32 characters in length\n    msg.payload = msg.payload.slice(0, 32);\n}\n\n// append input to global.received\nglobal.set(\"received\", currentValue + \"<br><br>\" + msg.topic + currentTime + \": \" + msg.payload);\n\n// set msg.payload to global.received\nmsg.payload = global.get(\"received\");\n\n// return updated msg\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -340,7 +340,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "StripInvalidCharacters",
-        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    process.exit();\n}\n\nreturn msg;",
+        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    return;\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -396,6 +396,13 @@
                 "pt": "msg",
                 "to": "1",
                 "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "replyIndicator",
+                "pt": "global",
+                "to": "1",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -416,7 +423,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "UpdateReplyIndicator",
-        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    msg.payload = 0;\n}\nreturn msg;",
+        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    global.set(\"replyIndicator\", 0);\n    msg.payload = 0;\n} else {\n    msg.payload = global.get(\"replyIndicator\");\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
