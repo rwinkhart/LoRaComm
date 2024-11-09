@@ -1,4 +1,4 @@
-void setup(){
+void setup() {
   // set pin modes
   pinMode(LED, OUTPUT);
   pinMode(SloraRX, INPUT);
@@ -16,12 +16,13 @@ void setup(){
   lcd.clear();
 }
 
-void loop(){
+void loop() {
   // always listen for incoming LoRa messages
   if (Slora.available()) {
     // store received message
     String incoming = parseMessage(Slora.readString());
 
+    // check if message is a reply
     if (incoming.equals("%OK")) {
       // reply received; clear messagBuffer and LCD
       messageBuffer[0] = '\0';
@@ -34,9 +35,7 @@ void loop(){
       // not a reply
       if (!incoming.equals(incomingPrev)) {
         // flash notification LED
-        digitalWrite(LED, 1);
-        delay(1000);
-        digitalWrite(LED, 0);
+        blinkLED(1, 1000);
         // send reply to peer
         sendToPeer("%OK\0");
         // echo message over hardware serial for GUI
@@ -62,17 +61,17 @@ void loop(){
   if (Serial.available()) {
     String incoming = Serial.readString();
     if (incoming.equals("%DOCK")) {
-        // toggle docked mode
-        docked = !docked;
-        if (docked == true) {
-          blinkLED(2, 100);
-        } else {
-          blinkLED(3, 100);
-        }
+      // toggle docked mode
+      docked = !docked;
+      if (docked == true) {
+        blinkLED(2, 100);
       } else {
-        sendToPeer(incoming.c_str());
+        blinkLED(3, 100);
       }
-    clearSerialBuffer(); // avoid over-loading serial interface
+    } else {
+      sendToPeer(incoming.c_str());
+    }
+    clearSerialBuffer();  // avoid over-loading serial interface
   }
 
   // always listen for keypresses
@@ -108,11 +107,10 @@ void loop(){
           lcd.setCursor(0, 1);
         }
         lcd.print(t9key);
-        messageBuffer[cursor-1] = t9key;
+        messageBuffer[cursor - 1] = t9key;
         messageBuffer[cursor] = '\0';
         cursor++;
       }
     }
-
   }
 }
