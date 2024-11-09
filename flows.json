@@ -357,34 +357,6 @@
         ]
     },
     {
-        "id": "771b1d7cab3cb5e5",
-        "type": "ui_gauge",
-        "z": "09924cb364b4bda0",
-        "name": "",
-        "group": "462871a2e265a875",
-        "order": 5,
-        "width": "1",
-        "height": "1",
-        "gtype": "gage",
-        "title": "Reply",
-        "label": "",
-        "format": "",
-        "min": "0",
-        "max": "1",
-        "colors": [
-            "#98971a",
-            "#d79921",
-            "#d79921"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 690,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "1daec7c5b7272b73",
         "type": "change",
         "z": "09924cb364b4bda0",
@@ -394,15 +366,15 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "1",
-                "tot": "str"
+                "to": "true",
+                "tot": "bool"
             },
             {
                 "t": "set",
                 "p": "replyIndicator",
                 "pt": "global",
-                "to": "1",
-                "tot": "str"
+                "to": "true",
+                "tot": "bool"
             }
         ],
         "action": "",
@@ -414,7 +386,7 @@
         "y": 200,
         "wires": [
             [
-                "771b1d7cab3cb5e5"
+                "ca7e64b125f706a7"
             ]
         ]
     },
@@ -423,7 +395,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "UpdateReplyIndicator",
-        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    global.set(\"replyIndicator\", 0);\n    msg.payload = 0;\n} else {\n    msg.payload = global.get(\"replyIndicator\");\n}\nreturn msg;",
+        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    global.set(\"replyIndicator\", 0);\n    msg.payload = false;\n} else {\n    msg.payload = global.get(\"replyIndicator\");\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -434,8 +406,40 @@
         "y": 320,
         "wires": [
             [
-                "771b1d7cab3cb5e5"
+                "ca7e64b125f706a7"
             ]
+        ]
+    },
+    {
+        "id": "ca7e64b125f706a7",
+        "type": "ui_switch",
+        "z": "09924cb364b4bda0",
+        "name": "",
+        "label": "Reply",
+        "tooltip": "",
+        "group": "462871a2e265a875",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 690,
+        "y": 260,
+        "wires": [
+            []
         ]
     }
 ]
