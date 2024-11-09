@@ -64,20 +64,6 @@ String byteArrayToString(const byte *byteArray) {
   return result;
 }
 
-void printArray(byte output[])
-{
-  for (int i = 0; i < 32; i++)
-  {
-    if (output[i] < 0x10)
-    {
-      Serial.print("0");
-    }
-    Serial.print(output[i], HEX);
-    Serial.print(" ");
-  }
-  Serial.println();
-}
-
 // send message to partner LoRa module
 void sendToPeer(const char* message) {
   // ensure message is not blank
