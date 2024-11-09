@@ -28,6 +28,9 @@ void loop(){
       messageBuffer[0] = '\0';
       lcd.clear();
       cursor = 1;
+
+      // forward reply to GUI
+      Serial.println("%OK");
     } else {
       // not a reply
       if (!incoming.equals(incomingPrev)) {
