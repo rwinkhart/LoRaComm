@@ -168,8 +168,7 @@
         "wires": [
             [
                 "2dcd9f7c13cc1903",
-                "84a109984807fb10",
-                "dc8dac01f7faef2f"
+                "a0024828bfc30dd5"
             ]
         ]
     },
@@ -206,7 +205,7 @@
         "z": "09924cb364b4bda0",
         "name": "Arduino RX",
         "serial": "baa84915725afe13",
-        "x": 650,
+        "x": 870,
         "y": 120,
         "wires": []
     },
@@ -264,7 +263,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
+        "x": 810,
         "y": 220,
         "wires": [
             [
@@ -289,7 +288,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 990,
+        "x": 1150,
         "y": 220,
         "wires": []
     },
@@ -305,7 +304,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
+        "x": 860,
         "y": 420,
         "wires": [
             [
@@ -332,6 +331,27 @@
         "y": 500,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a0024828bfc30dd5",
+        "type": "function",
+        "z": "09924cb364b4bda0",
+        "name": "StripInvalidCharacters",
+        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "dc8dac01f7faef2f",
+                "84a109984807fb10"
+            ]
         ]
     }
 ]
