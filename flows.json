@@ -28,153 +28,155 @@
         "responsetimeout": "10000"
     },
     {
-        "id": "7d1bd7bbc92bf5a1",
-        "type": "ui_tab",
+        "id": "10d6d87a92acafc9",
+        "type": "ui-base",
         "name": "LoRaComm Client",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": false,
+        "acceptsClientConfig": [],
+        "showPathInSidebar": false,
+        "showPageTitle": true,
+        "navigationStyle": "none",
+        "titleBarStyle": "default"
     },
     {
-        "id": "0b09f7ad4d44ab34",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-custom",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
+        "id": "6ea0a51cdb1d697e",
+        "type": "ui-page",
+        "name": "LoRaComm Client",
+        "ui": "10d6d87a92acafc9",
+        "path": "/home",
+        "icon": "",
+        "layout": "grid",
+        "theme": "bc58d4f2163f36a4",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
             },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
             },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#d65d0e",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
             },
-            "themeState": {
-                "base-color": {
-                    "default": "#4B7930",
-                    "value": "#d65d0e",
-                    "edited": true
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#d65d0e",
-                    "edited": true
-                },
-                "page-backgroundColor": {
-                    "value": "#272727",
-                    "edited": true
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ebdbb2",
-                    "edited": true
-                },
-                "group-textColor": {
-                    "value": "#f2853e",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#655b53",
-                    "edited": true
-                },
-                "group-backgroundColor": {
-                    "value": "#655b53",
-                    "edited": true
-                },
-                "widget-textColor": {
-                    "value": "#ebdbb2",
-                    "edited": true
-                },
-                "widget-backgroundColor": {
-                    "value": "#d65d0e",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#655b53",
-                    "edited": true
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
             }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "a4c2bb1d1e285504",
+        "type": "ui-group",
+        "name": "Dashboard2",
+        "page": "6ea0a51cdb1d697e",
+        "width": "24",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "bc58d4f2163f36a4",
+        "type": "ui-theme",
+        "name": "Gruvbox Dark",
+        "colors": {
+            "surface": "#d65d0e",
+            "primary": "#d65d0e",
+            "bgPage": "#272727",
+            "groupBg": "#665c54",
+            "groupOutline": "#665c54"
         },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
+        "sizes": {
+            "density": "compact",
+            "pagePadding": "0px",
+            "groupGap": "12px",
+            "groupBorderRadius": "0px",
+            "widgetGap": "8px"
         }
     },
     {
-        "id": "462871a2e265a875",
-        "type": "ui_group",
-        "name": "Main",
-        "tab": "7d1bd7bbc92bf5a1",
-        "order": 3,
-        "disp": false,
-        "width": "24",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "5bfc2e457122e83a",
-        "type": "ui_text_input",
+        "id": "a82ccb1a8a66d70d",
+        "type": "ui-text-input",
         "z": "09924cb364b4bda0",
+        "group": "a4c2bb1d1e285504",
         "name": "TypedMessage",
         "label": "",
-        "tooltip": "",
-        "group": "462871a2e265a875",
-        "order": 5,
+        "order": 4,
         "width": "24",
-        "height": "2",
-        "passthru": false,
-        "mode": "text",
-        "delay": "0",
+        "height": "1",
         "topic": "<font color='#fb4934'>You ",
-        "sendOnBlur": false,
-        "className": "",
         "topicType": "str",
+        "mode": "text",
+        "tooltip": "",
+        "delay": 300,
+        "passthru": false,
+        "sendOnDelay": false,
+        "sendOnBlur": false,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": true,
+        "sendOnClear": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
         "x": 240,
         "y": 120,
         "wires": [
             [
-                "2dcd9f7c13cc1903",
-                "a0024828bfc30dd5",
-                "1daec7c5b7272b73"
+                "f0a7d1152774266f",
+                "bebfecf5829b99e0",
+                "df7a56c1239954e7"
             ]
         ]
     },
     {
-        "id": "2dcd9f7c13cc1903",
+        "id": "f0a7d1152774266f",
+        "type": "function",
+        "z": "09924cb364b4bda0",
+        "name": "StripInvalidCharacters",
+        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    return;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "6f97acd918d14918",
+                "06ac2f3a2d590c0e"
+            ]
+        ]
+    },
+    {
+        "id": "6f97acd918d14918",
+        "type": "serial out",
+        "z": "09924cb364b4bda0",
+        "name": "Arduino RX",
+        "serial": "baa84915725afe13",
+        "x": 1110,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "bebfecf5829b99e0",
         "type": "change",
         "z": "09924cb364b4bda0",
         "name": "ClearTextInput",
@@ -196,22 +198,34 @@
         "y": 260,
         "wires": [
             [
-                "5bfc2e457122e83a"
+                "a82ccb1a8a66d70d"
             ]
         ]
     },
     {
-        "id": "84a109984807fb10",
-        "type": "serial out",
+        "id": "bfbb4f7854991598",
+        "type": "ui-text",
         "z": "09924cb364b4bda0",
-        "name": "Arduino RX",
-        "serial": "baa84915725afe13",
-        "x": 1110,
-        "y": 120,
+        "group": "a4c2bb1d1e285504",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "name": "Conversation",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 1370,
+        "y": 380,
         "wires": []
     },
     {
-        "id": "281a50982b789c4f",
+        "id": "cf43a456754f237d",
         "type": "serial in",
         "z": "09924cb364b4bda0",
         "name": "Arduino TX",
@@ -220,45 +234,17 @@
         "y": 380,
         "wires": [
             [
-                "dc8dac01f7faef2f",
-                "0e37f54cb01c37b6"
+                "06ac2f3a2d590c0e",
+                "17171e8eb74825bf"
             ]
         ]
     },
     {
-        "id": "b6018aefac665364",
-        "type": "ui_button",
-        "z": "09924cb364b4bda0",
-        "name": "",
-        "group": "462871a2e265a875",
-        "order": 2,
-        "width": "24",
-        "height": "1",
-        "passthru": false,
-        "label": "Clear",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 210,
-        "y": 460,
-        "wires": [
-            [
-                "998526cdd8a9e151"
-            ]
-        ]
-    },
-    {
-        "id": "dc8dac01f7faef2f",
+        "id": "06ac2f3a2d590c0e",
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "Append input to global.received",
-        "func": "// ensure msg.payload is not a reply\nif (msg.payload.startsWith(\"%OK\")) {\n    return;\n}\n\n// ensure message is not duplicate\nif (msg.payload == global.get(\"messageOutPrev\")) {\n    return;\n}\n\nglobal.set(\"messageOutPrev\", msg.payload);\n\n// get current global.received\nlet currentValue = global.get(\"received\") || \"\";\n\n// get current time\nlet currentTime = new Date().toLocaleTimeString();\n\n// determine send user based on msg.topic\nif (msg.topic != \"<font color='#fb4934'>You \") {\n    msg.topic = \"<font color='#b8bb26'>Friend \";\n} else if (msg.payload.length > 32) {\n    // when sending a message from GUI,\n    // ensure it does not exceed 32 characters in length\n    msg.payload = msg.payload.slice(0, 32);\n}\n\n// append input to global.received\nglobal.set(\"received\", currentValue + \"<br><br>\" + msg.topic + \"</font>@ \" + currentTime + \": \" + msg.payload);\n\n// set msg.payload to global.received\nmsg.payload = global.get(\"received\");\n\n// return updated msg\nreturn msg;",
+        "func": "// ensure msg.payload is not a reply\nif (msg.payload.startsWith(\"%OK\")) {\n    return;\n}\n\n// ensure message is not duplicate\nif (msg.payload == global.get(\"messageOutPrev\")) {\n    return;\n}\n\nglobal.set(\"messageOutPrev\", msg.payload);\n\n// get current global.received\nlet currentValue = global.get(\"received\") || \"\";\n\n// get current time\nlet currentTime = new Date().toLocaleTimeString();\n\n// determine send user based on msg.topic\nif (msg.topic != \"<font color='#fb4934'>You \") {\n    msg.topic = \"<font color='#b8bb26'>Friend \";\n} else if (msg.payload.length > 32) {\n    // when sending a message from GUI,\n    // ensure it does not exceed 32 characters in length\n    msg.payload = msg.payload.slice(0, 32);\n}\n\n// determine if firstRun (to know how many new lines to append)\nlet gap = \"<br><br>\"\nif (global.get(\"firstRun\")) {\n    gap = \"\";\n}\nglobal.set(\"firstRun\", false);\n\n// append input to global.received\nglobal.set(\"received\", currentValue + gap + msg.topic + \"</font>@ \" + currentTime + \": \" + msg.payload);\n\n// set msg.payload to global.received\nmsg.payload = global.get(\"received\");\n\n// return updated msg\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -269,33 +255,12 @@
         "y": 380,
         "wires": [
             [
-                "ea89460c9962218b"
+                "bfbb4f7854991598"
             ]
         ]
     },
     {
-        "id": "ea89460c9962218b",
-        "type": "ui_text",
-        "z": "09924cb364b4bda0",
-        "group": "462871a2e265a875",
-        "order": 3,
-        "width": "24",
-        "height": "12",
-        "name": "Conversation",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 1390,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "998526cdd8a9e151",
+        "id": "3f1199f9622b535a",
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "ClearTextOutput",
@@ -307,57 +272,125 @@
         "finalize": "",
         "libs": [],
         "x": 1100,
-        "y": 460,
+        "y": 440,
         "wires": [
             [
-                "ea89460c9962218b"
+                "bfbb4f7854991598"
             ]
         ]
     },
     {
-        "id": "a4ca67f56184fdcf",
-        "type": "ui_template",
+        "id": "bfadb4da484283c1",
+        "type": "ui-button",
         "z": "09924cb364b4bda0",
-        "group": "462871a2e265a875",
-        "name": "CSS",
-        "order": 4,
+        "group": "a4c2bb1d1e285504",
+        "name": "Clear",
+        "label": "Clear Chat History",
+        "order": 2,
+        "width": "24",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 210,
+        "y": 440,
+        "wires": [
+            [
+                "3f1199f9622b535a"
+            ]
+        ]
+    },
+    {
+        "id": "d71a08b18d4c78d1",
+        "type": "ui-button",
+        "z": "09924cb364b4bda0",
+        "group": "a4c2bb1d1e285504",
+        "name": "ToggleDocked",
+        "label": "Toggle Docked Mode",
+        "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    .nr-dashboard-text {\n        display: flex;\n        align-items: flex-end;\n    }\n\n    ui-card-panel, .md-button, .md-input, .nr-dashboard-text {\n        width: 100vw !important;\n    }\n</style>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
         "className": "",
-        "x": 210,
-        "y": 580,
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "%DOCK",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 240,
+        "y": 500,
+        "wires": [
+            [
+                "6f97acd918d14918"
+            ]
+        ]
+    },
+    {
+        "id": "f59e5ebc2f9d3bca",
+        "type": "ui-switch",
+        "z": "09924cb364b4bda0",
+        "name": "Reply",
+        "label": "",
+        "group": "a4c2bb1d1e285504",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "decouple": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "className": "",
+        "layout": "row-left-swapped",
+        "clickableArea": "switch",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 670,
+        "y": 260,
         "wires": [
             []
         ]
     },
     {
-        "id": "a0024828bfc30dd5",
-        "type": "function",
-        "z": "09924cb364b4bda0",
-        "name": "StripInvalidCharacters",
-        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    return;\n}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 120,
-        "wires": [
-            [
-                "dc8dac01f7faef2f",
-                "84a109984807fb10"
-            ]
-        ]
-    },
-    {
-        "id": "1daec7c5b7272b73",
+        "id": "df7a56c1239954e7",
         "type": "change",
         "z": "09924cb364b4bda0",
         "name": "StartReplyIndicator",
@@ -386,12 +419,12 @@
         "y": 200,
         "wires": [
             [
-                "ca7e64b125f706a7"
+                "f59e5ebc2f9d3bca"
             ]
         ]
     },
     {
-        "id": "0e37f54cb01c37b6",
+        "id": "17171e8eb74825bf",
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "UpdateReplyIndicator",
@@ -406,68 +439,76 @@
         "y": 320,
         "wires": [
             [
-                "ca7e64b125f706a7"
+                "f59e5ebc2f9d3bca"
             ]
         ]
     },
     {
-        "id": "ca7e64b125f706a7",
-        "type": "ui_switch",
+        "id": "583da3d1789ab438",
+        "type": "ui-template",
         "z": "09924cb364b4bda0",
-        "name": "",
-        "label": "",
-        "tooltip": "",
-        "group": "462871a2e265a875",
-        "order": 6,
-        "width": "1",
-        "height": "1",
-        "passthru": false,
-        "decouple": "true",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "blue",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "red",
-        "animate": false,
+        "group": "",
+        "page": "6ea0a51cdb1d697e",
+        "ui": "",
+        "name": "CSS",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": ".nrdb-ui-text {\n    align-items: flex-end;\n}",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "page:style",
         "className": "",
-        "x": 690,
-        "y": 260,
+        "x": 210,
+        "y": 560,
         "wires": [
             []
         ]
     },
     {
-        "id": "38cde975b65e10be",
-        "type": "ui_button",
+        "id": "bdfc80c9d61eb09f",
+        "type": "inject",
         "z": "09924cb364b4bda0",
-        "name": "",
-        "group": "462871a2e265a875",
-        "order": 1,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Toggle Docked",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "%DOCK",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 240,
-        "y": 520,
+        "name": "SetFirstRun",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 230,
+        "y": 60,
         "wires": [
             [
-                "84a109984807fb10"
+                "2bda13b615082748"
             ]
+        ]
+    },
+    {
+        "id": "2bda13b615082748",
+        "type": "change",
+        "z": "09924cb364b4bda0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "firstRun",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 60,
+        "wires": [
+            []
         ]
     }
 ]
