@@ -19,7 +19,7 @@ uint8_t getPeerAddress() {
 
 // TODO remove trailing 0D 0A 00...
 void encrypt(String input, byte *outArray) {
-  byte in[32] = {0};
+  byte in[33] = {0};
   input.getBytes(in, input.length()+1);
   // process the input in 8-byte blocks
   for (int i = 0; i < 32; i += 8) {
