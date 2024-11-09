@@ -80,6 +80,11 @@ void printArray(byte output[])
 
 // send message to partner LoRa module
 void sendToPeer(const char* message) {
+  // ensure message is not blank
+  if (message[0] == '\0') {
+    return;
+  }
+
   // encrypt message prior to send
   byte messageEncBytes[33] = {0};
   encrypt(String(message), messageEncBytes);
