@@ -161,7 +161,8 @@
         "wires": [
             [
                 "6f97acd918d14918",
-                "06ac2f3a2d590c0e"
+                "06ac2f3a2d590c0e",
+                "d3638a66570b06c3"
             ]
         ]
     },
@@ -349,8 +350,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 240,
-        "y": 500,
+        "x": 800,
+        "y": 160,
         "wires": [
             [
                 "6f97acd918d14918"
@@ -364,7 +365,7 @@
         "name": "Reply",
         "label": "",
         "group": "a4c2bb1d1e285504",
-        "order": 5,
+        "order": 7,
         "width": "1",
         "height": "1",
         "passthru": false,
@@ -462,7 +463,94 @@
         "templateScope": "page:style",
         "className": "",
         "x": 210,
-        "y": 560,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c859994a70fe415c",
+        "type": "ui-button",
+        "z": "09924cb364b4bda0",
+        "group": "a4c2bb1d1e285504",
+        "name": "",
+        "label": "Re-send",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "lastSent",
+        "payloadType": "global",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "6f97acd918d14918",
+                "df7a56c1239954e7"
+            ]
+        ]
+    },
+    {
+        "id": "961cbfd48ab861ec",
+        "type": "ui-text",
+        "z": "09924cb364b4bda0",
+        "group": "a4c2bb1d1e285504",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "name": "spacer",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 830,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d3638a66570b06c3",
+        "type": "change",
+        "z": "09924cb364b4bda0",
+        "name": "StoreLastSent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "lastSent",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 60,
         "wires": [
             []
         ]
