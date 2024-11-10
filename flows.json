@@ -359,38 +359,6 @@
         ]
     },
     {
-        "id": "f59e5ebc2f9d3bca",
-        "type": "ui-switch",
-        "z": "09924cb364b4bda0",
-        "name": "Reply",
-        "label": "",
-        "group": "a4c2bb1d1e285504",
-        "order": 7,
-        "width": "1",
-        "height": "1",
-        "passthru": false,
-        "decouple": true,
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "className": "",
-        "layout": "row-left-swapped",
-        "clickableArea": "switch",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 670,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "df7a56c1239954e7",
         "type": "change",
         "z": "09924cb364b4bda0",
@@ -398,17 +366,17 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
+                "p": "replyIndicator",
+                "pt": "global",
+                "to": "<font color='#fb4934'>X</font> Not yet delivered",
+                "tot": "str"
             },
             {
                 "t": "set",
-                "p": "replyIndicator",
-                "pt": "global",
-                "to": "true",
-                "tot": "bool"
+                "p": "payload",
+                "pt": "msg",
+                "to": "replyIndicator",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -420,7 +388,7 @@
         "y": 200,
         "wires": [
             [
-                "f59e5ebc2f9d3bca"
+                "961cbfd48ab861ec"
             ]
         ]
     },
@@ -429,7 +397,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "UpdateReplyIndicator",
-        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    global.set(\"replyIndicator\", 0);\n    msg.payload = false;\n} else {\n    msg.payload = global.get(\"replyIndicator\");\n}\nreturn msg;",
+        "func": "if (msg.payload.startsWith(\"%OK\")) {\n    global.set(\"replyIndicator\", \"<font color='#b8bb26'>✓</font> Delivered\");\n    msg.payload = global.get(\"replyIndicator\");\n} else {\n    msg.payload = global.get(\"replyIndicator\");\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -440,7 +408,7 @@
         "y": 320,
         "wires": [
             [
-                "f59e5ebc2f9d3bca"
+                "961cbfd48ab861ec"
             ]
         ]
     },
@@ -514,9 +482,9 @@
         "z": "09924cb364b4bda0",
         "group": "a4c2bb1d1e285504",
         "order": 6,
-        "width": "1",
+        "width": "3",
         "height": "1",
-        "name": "spacer",
+        "name": "ReplyInd",
         "label": "",
         "format": "{{msg.payload}}",
         "layout": "row-left",
@@ -526,8 +494,8 @@
         "color": "#717171",
         "wrapText": false,
         "className": "",
-        "x": 830,
-        "y": 240,
+        "x": 680,
+        "y": 260,
         "wires": []
     },
     {
