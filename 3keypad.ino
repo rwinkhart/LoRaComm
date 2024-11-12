@@ -1,4 +1,8 @@
 void backspace() {
+  if (cursor == 1) {
+    return;
+  }
+
   uint8_t cursorX;
   uint8_t cursorY;
 
