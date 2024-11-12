@@ -22,7 +22,7 @@ const char keys[ROWS][COLS] = {
   { 'A', 'D', 'G', 'a' },
   { 'J', 'M', 'P', 'n' },
   { 'S', 'V', 'Y', '^' },
-  { '@', '.', '>', ' ' }
+  { ':', '.', '>', ' ' }
 };
 
 // define keypad pins

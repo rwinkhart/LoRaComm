@@ -149,7 +149,7 @@
         "type": "function",
         "z": "09924cb364b4bda0",
         "name": "StripInvalidCharacters",
-        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    return;\n}\n\nreturn msg;",
+        "func": "// define valid characters\nconst validChars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,:)(\\'.?!';\n\n// use regex to remove all invalid characters\nmsg.payload = msg.payload.replace(new RegExp(`[^${validChars}]`, 'g'), '');\n\n// ensure message is not empty\nif (!msg.payload) {\n    return;\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,

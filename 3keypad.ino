@@ -21,45 +21,46 @@ void backspace() {
 
 void determineMultipress(char key) {
   switch (key) {
-    case 'A':  // A, B, C | 1
+    case 'A':  // A B C | 1
       updateMultipress(1);
       break;
-    case 'D':  // D, E, F | 2
+    case 'D':  // D E F | 2
       updateMultipress(2);
       break;
-    case 'G':  // G, H, I | 3
+    case 'G':  // G H I | 3
       updateMultipress(3);
       break;
     case 'a':  // alphabetical keyboard
       numeric = false;
       break;
-    case 'J':  // J, K, L | 4
+    case 'J':  // J K L | 4
       updateMultipress(5);
       break;
-    case 'M':  // M, N, O | 5
+    case 'M':  // M N O | 5
       updateMultipress(6);
       break;
-    case 'P':  // P, Q, R | 6
+    case 'P':  // P Q R | 6
       updateMultipress(7);
       break;
     case 'n':  // numeric keyboard
       numeric = true;
       break;
-    case 'S':  // S, T, U | 7
+    case 'S':  // S T U | 7
       updateMultipress(9);
       break;
-    case 'V':  // V, W, X | 8
+    case 'V':  // V W X | 8
       updateMultipress(10);
       break;
-    case 'Y':  // Y, Z, "," | 9
+    case 'Y':  // Y Z , | 9
       updateMultipress(11);
       break;
     case '^':  // capital shift
       capitalShift = true;
       break;
-    case '@':  // check received
+    case ':':  // : ) ( | '
+      updateMultipress(13);
       break;
-    case '.':  // ., !, ? | 0
+    case '.':  // . ! ? | 0
       updateMultipress(14);
       break;
     case '>':  // send message
@@ -173,6 +174,14 @@ char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
       trio[0] = 'y';
       trio[1] = 'z';
       trio[2] = ',';
+      break;
+    case 13:
+      if (numeric) {
+        return '\'';
+      }
+      trio[0] = ':';
+      trio[1] = ')';
+      trio[2] = '(';
       break;
     case 14:
       if (numeric) {
