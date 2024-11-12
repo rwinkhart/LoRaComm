@@ -27,7 +27,7 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
     - See [here](https://www.hackster.io/mdraber/how-to-use-rylr998-lora-module-with-arduino-020ac4) for an excellent tutorial on programming and understanding basic usage of these LoRa modules
 - A friend to use the devices with
 ### Fritzing Diagram
-Coming soon
+![Fritzing Diagram](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/fritzing.webp)
 
 ### Keypad Matrix Legend
 ![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
