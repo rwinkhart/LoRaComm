@@ -27,6 +27,8 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
     - See [here](https://www.hackster.io/mdraber/how-to-use-rylr998-lora-module-with-arduino-020ac4) for an excellent tutorial on programming and understanding basic usage of these LoRa modules
 - A friend to use the devices with
 ### Fritzing Diagram
+> Please note that the LoRa module in the diagram (RYLR890) is not the one intended for use in this project (RYLR998). A Fritzing part for the RYLR998 does not currently exist.
+
 ![Fritzing Diagram](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/fritzing.webp)
 
 ### Keypad Matrix Legend
