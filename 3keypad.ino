@@ -1,4 +1,5 @@
 void backspace() {
+  // prevent backspacing beyond first cursor position
   if (cursor == 1) {
     return;
   }
@@ -23,6 +24,9 @@ void backspace() {
   lcd.setCursor(cursorX - 1, cursorY);
 }
 
+// take action based on key pressed;
+// character keys run updateMultipress;
+// other keys cause direct action
 void determineMultipress(char key) {
   switch (key) {
     case 'A':  // A B C | 1
@@ -81,6 +85,8 @@ void determineMultipress(char key) {
   }
 }
 
+// update global multipress[] with the last key pressed and the
+// number of times it has been pressed consecutively
 void updateMultipress(uint8_t keyNumber) {
   uint8_t pressCount;
 
@@ -102,11 +108,12 @@ void updateMultipress(uint8_t keyNumber) {
   multipress[1] = pressCount;
 }
 
-char calcMP(uint8_t keyNum, uint8_t pressCount, bool numeric) {
+// returns current character based on information in global multipress[]
+char calcMP(bool numeric) {
   char trio[3];
 
   // translate key # to letters
-  switch (keyNum) {
+  switch (multipress[0]) {
     case 1:
       if (numeric) {
         return '1';
@@ -199,7 +206,7 @@ char calcMP(uint8_t keyNum, uint8_t pressCount, bool numeric) {
       trio[0] = ' ';  // rest of trio does not need to be defined (once multipress exceeds 1 for a space, it is printed and multipress is reset)
   }
 
-  return trio[pressCount - 1];
+  return trio[multipress[1] - 1];
 }
 
 // block until a key is pressed

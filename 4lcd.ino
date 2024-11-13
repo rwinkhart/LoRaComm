@@ -1,4 +1,6 @@
-// write a message to the LCD and keep it present until a key is pressed
+// write a message to the LCD;
+// blocks to keep message visible until a key is
+// pressed if NOT in docked mode
 void writeToLCD(const char *message, bool block) {
   lcd.clear();
   cursor = 1;

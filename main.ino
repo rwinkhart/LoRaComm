@@ -84,8 +84,8 @@ void loop() {
     determineMultipress(key);
 
     if (typeKey) {
-      MPkey = calcMP(multipress[0], multipress[1], numeric);
-      multipress[1] = 0;
+      MPkey = calcMP(numeric);
+      multipress[1] = 0;  // reset press count
 
       if (capitalShift) {
         // disable capitalShift for next iteration

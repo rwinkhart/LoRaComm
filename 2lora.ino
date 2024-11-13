@@ -1,4 +1,3 @@
-// get address of partner LoRa module
 uint8_t getPeerAddress() {
   // clear serial buffer prior to address query
   clearSloraBuffer();
@@ -16,7 +15,6 @@ uint8_t getPeerAddress() {
   }
 }
 
-// TODO remove trailing 0D 0A 00...
 void encrypt(String input, byte *outArray) {
   byte in[33] = { 0 };
   input.getBytes(in, input.length() + 1);
@@ -63,7 +61,7 @@ String byteArrayToString(const byte *byteArray) {
   return result;
 }
 
-// send message to partner LoRa module
+// encrypt and send message to LoRa peer
 void sendToPeer(const char *message) {
   // ensure message is not blank
   if (message[0] == '\0') {
@@ -89,7 +87,7 @@ void sendToPeer(const char *message) {
   clearSloraBuffer();
 }
 
-// return parsed message from incoming LoRa message
+// return parsed and decrypted incoming message from LoRa peer
 String parseMessage(String message) {
   String parsed = message.substring(0, message.lastIndexOf(',', message.lastIndexOf(',') - 1));
   int secondComma = parsed.indexOf(',', message.indexOf(',') + 1);
