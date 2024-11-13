@@ -5,7 +5,7 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
 
 # Hardware Guide
 ### Required (per-device; multiply by 2)
-- 1x Arduino Uno R3 or similar board (needs 3.3v out for LoRa modules; 17 digital pins needed for full )
+- 1x Arduino Uno R3 or similar board
     - Needs 3.3V out for LoRa module
     - 17 digital pins are needed for a full portable build; only 2 are needed for a minimal docked build
     - Analog pins can be repurposed as digital
@@ -46,7 +46,7 @@ All settings for the RYLR998 LoRa modules are left at factory defaults except fo
 # Software Guide
 ### Arduino Boards
 #### Dependencies
-See `deps.txt` for any dependencies not included in Arduino IDE.
+See [here](https://github.com/rwinkhart/LoRaComm/blob/main/cpp-deps.md) for any dependencies not included in Arduino IDE.
 #### Setup
 Simply create a `1loracomm` folder in your Arduino project directory and download all of the provided *.ino files from this repository.
 
@@ -60,7 +60,7 @@ Once you've modified `desKey`, flash both Arduino boards with the same code. Tar
 #### Dependencies
 - Node-RED
     - Palettes
-        - `node-red-dashboard`
+        - `@flowfuse/node-red-dashboard` (AKA Dashboard 2.0)
         - `node-red-node-serialport`
 #### Setup
 The web GUI is a very simple application built in Node-RED. The `flows.json` containing the GUI is included in this repository. Import it into your Node-RED editor and change the physical serial interface assigned to the serial port to match your environment.
