@@ -31,17 +31,17 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
 
 ![Fritzing Diagram](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/fritzing.webp)
 
-### Keypad Matrix Legend
-![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
-
 ### LoRa Module Programming
-All settings for the RYLR998 LoRa modules are left at factor defaults except for:
+All settings for the RYLR998 LoRa modules are left at factory defaults except for:
 - Network ID
     - Set to anything, as long as it matches between your two modules
     - Configure with `AT+NETWORKID=<n>`
 - Address
     - One module should use `1` as the address and the other should use `2`
     - Configure with `AT+ADDRESS=<n>`
+
+ ### Keypad Matrix Legend
+![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
 
 # Software Guide
 ### Arduino Boards
@@ -64,6 +64,18 @@ Once you've modified `desKey`, flash both Arduino boards with the same code. Tar
         - `node-red-node-serialport`
 #### Setup
 The web GUI is a very simple application built in Node-RED. The `flows.json` containing the GUI is included in this repository. Import it into your Node-RED editor and change the physical serial interface assigned to the serial port to match your environment.
+
+# Usage (Portable Mode)
+The keypad uses a custom rendition of manual T9 dialing. Each character key has 4 possible outputs (three that alternate on sequential presses and one that can only be typed from numeric mode).
+
+To use it, press a key the number of times necessary to correspond to your desired character.
+If you want to type a number or an apostrophe, you must first switch to numeric mode using the "N" key (you can switch back using the "A" key).
+You may also use the shift key to type capital variations of any letter or to perform a backspace using the "space" key.
+
+After typing your desired input, **you must follow it up with the "space" key to confirm it and display it on the connected LCD**. To simply type a space, you must press "space" twice.
+
+Once you are ready to send your message, press the "->" key. Once the message is verified to have been received by the LoRa peer, the message will clear from the LCD.
+If the message never clears from the LCD, either the message itself or the peer verification was lost in transit. Simply press send again (the peer will *not* display duplicate messages when just the verification was lost).
 
 # Demonstration of Physical Build
 Coming soon
