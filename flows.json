@@ -11,7 +11,7 @@
         "id": "baa84915725afe13",
         "type": "serial-port",
         "name": "Arduino",
-        "serialport": "/dev/ttyACM2",
+        "serialport": "/dev/ttyACM1",
         "serialbaud": "9600",
         "databits": "8",
         "parity": "none",

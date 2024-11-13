@@ -33,6 +33,9 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
 
 ### LoRa Module Programming
 All settings for the RYLR998 LoRa modules are left at factory defaults except for:
+- Baud rate
+    - Set to 9600 to compensate for slower Arduino boards/for consistency with Arduino IDE
+    - Configure with `AT+IPR=9600`
 - Network ID
     - Set to anything, as long as it matches between your two modules
     - Configure with `AT+NETWORKID=<n>`
