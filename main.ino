@@ -84,30 +84,30 @@ void loop() {
     determineMultipress(key);
 
     if (typeKey) {
-      t9key = calcT9(multipress[0], multipress[1], numeric);
+      MPkey = calcMP(multipress[0], multipress[1], numeric);
       multipress[1] = 0;
 
       if (capitalShift) {
         // disable capitalShift for next iteration
         capitalShift = false;
 
-        if (t9key == ' ') {
+        if (MPkey == ' ') {
           // print a backspace and set the cursor to the appropriate position
           backspace();
           return;
-        } else if (isAlpha(t9key)) {
-          // capitalize t9key if necessary
-          t9key = toUpperCase(t9key);
+        } else if (isAlpha(MPkey)) {
+          // capitalize MPkey if necessary
+          MPkey = toUpperCase(MPkey);
         }
       }
 
-      // print t9key at cursor location and add to message buffer; increment cursor position tracker (only if cursor is not already at max position)
+      // print MPkey at cursor location and add to message buffer; increment cursor position tracker (only if cursor is not already at max position)
       if (cursor <= 32) {
         if (cursor == 17) {
           lcd.setCursor(0, 1);
         }
-        lcd.print(t9key);
-        messageBuffer[cursor - 1] = t9key;
+        lcd.print(MPkey);
+        messageBuffer[cursor - 1] = MPkey;
         messageBuffer[cursor] = '\0';
         cursor++;
       }

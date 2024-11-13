@@ -69,7 +69,7 @@ Once you've modified `desKey`, flash both Arduino boards with the same code. Tar
 The web GUI is a very simple application built in Node-RED. The `flows.json` containing the GUI is included in this repository. Import it into your Node-RED editor and change the physical serial interface assigned to the serial port to match your environment.
 
 # Usage (Portable Mode)
-The keypad uses a custom rendition of manual T9 dialing. Each character key has 4 possible outputs (three that alternate on sequential presses and one that can only be typed from numeric mode).
+The keypad uses a custom rendition of manual multi-press dialing. Each character key has 4 possible outputs (three that alternate on sequential presses and one that can only be typed from numeric mode).
 
 To use it, press a key the number of times necessary to correspond to your desired character.
 If you want to type a number or an apostrophe, you must first switch to numeric mode using the "N" key (you can switch back using the "A" key).

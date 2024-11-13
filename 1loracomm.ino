@@ -35,11 +35,11 @@ const Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 // declare variable to store latest keypress
 char key;
 
-// declare variables for tracking t9 multipresses
+// declare variables for tracking multipresses
 bool capitalShift;  // tracks whether the shift key was pressed
 bool numeric;       // tracks whether to use numeric keyboard mode
 bool typeKey;       // tracks whether the current keypress should be visually typed
-char t9key;
+char MPkey;
 uint8_t multipress[2] = { 17, 0 };  // {key #, press count}
 
 //****************END KEYPAD****************//

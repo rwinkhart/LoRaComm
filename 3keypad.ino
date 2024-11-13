@@ -71,7 +71,7 @@ void determineMultipress(char key) {
       sendToPeer(messageBuffer);
       // do not clear messageBuffer or LCD until a reply is received
       break;
-    case ' ':  // confirm t9 character | space (if last character was confirmed) | backspace (if capital shifted)
+    case ' ':  // confirm character | space (if last character was confirmed) | backspace (if capital shifted)
       if (multipress[1] == 0) {
         // if last character was confirmed, send a space
         updateMultipress(16);
@@ -102,7 +102,7 @@ void updateMultipress(uint8_t keyNumber) {
   multipress[1] = pressCount;
 }
 
-char calcT9(uint8_t keyNum, uint8_t pressCount, bool numeric) {
+char calcMP(uint8_t keyNum, uint8_t pressCount, bool numeric) {
   char trio[3];
 
   // translate key # to letters
