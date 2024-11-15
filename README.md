@@ -37,11 +37,17 @@ All settings for the RYLR998 LoRa modules are left at factory defaults except fo
     - Set to 9600 to compensate for slower Arduino boards/for consistency with Arduino IDE
     - Configure with `AT+IPR=9600`
 - Network ID
-    - Set to anything, as long as it matches between your two modules
-    - Configure with `AT+NETWORKID=<n>`
+    - Set to 18, as this is required for manually configuring the programmed preamble for increased transmission reliability
+    - Configure with `AT+NETWORKID=18`
 - Address
     - One module should use `1` as the address and the other should use `2`
     - Configure with `AT+ADDRESS=<n>`
+- Advanced parameters
+    - Refers to SF (spreading factor), bandwidth, coding rate, and programmed preamble
+    - Set to 9,7,4,24 for best results (higher reliability; still maintains ~1.1 kbps bitrate)
+    - RYLR998 firmware disallows setting SF higher than 9 without increasing bandwidth, which is detrimental to reliability
+    - Documentation for programmed preamble in not very specific, but through trial and error I found no ill effects from maxing it out at 24, which the RYLR998 manual states should have the lowest chance of losing data
+    - Configure with `AT+PARAMETER=9,7,4,24`
 
  ### Keypad Matrix Legend
 ![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
