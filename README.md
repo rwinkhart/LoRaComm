@@ -5,15 +5,15 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
 
 # Hardware Guide
 ### Required (per-device; multiply by 2)
-- 1x Arduino Uno R3 or similar board
-    - Needs 3.3V out for LoRa module
+- 1x Arduino Uno R3 or similar microcontroller
+    - Needs 3.3V out for LoRa module and LCD backlight
     - 17 digital pins are needed for a full portable build; only 2 are needed for a minimal docked build
     - Analog pins can be repurposed as digital
-- 1x REYAX RYLR998 UART LoRa modules
-- A method of powering the devices (battery for portable use OR USB serial for docked/web GUI use)
-- Connection medium (breadboard/jumper wires/etc.)
+- 1x REYAX RYLR998 UART LoRa module
+- A method of powering the devices (battery for portable use or USB serial for docked/web GUI use)
+- Connection medium (breadboard+jumper wires/etc.)
 ### Recommended (per-device; multiply by 2)
-- 1x 1602 LCD + 2.2kΩ resistor (for contrast control)
+- 1x 1602 LCD + 2kΩ resistor for contrast control
     - Used to display in-progress and received messages
     - Can be used without by docking to web GUI
 - 1x 4x4 digital matrix keypad
@@ -26,10 +26,10 @@ The project is developed and tested on Arduino Uno R3's and was created as part 
     - Can be done from Arduino directly if needed (just somewhat annoying and harder to debug)
     - See [here](https://www.hackster.io/mdraber/how-to-use-rylr998-lora-module-with-arduino-020ac4) for an excellent tutorial on programming and understanding basic usage of these LoRa modules
 - A friend to use the devices with
-### Fritzing Diagram
+### Physical Build & Fritzing Diagram
 > Please note that the LoRa module in the diagram (RYLR890) is not the one intended for use in this project (RYLR998). A Fritzing part for the RYLR998 does not currently exist.
 
-![Fritzing Diagram](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/fritzing.webp)
+![Build and diagram](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/physical.webp)
 
 ### LoRa Module Programming
 All settings for the RYLR998 LoRa modules are left at factory defaults except for:
@@ -48,10 +48,6 @@ All settings for the RYLR998 LoRa modules are left at factory defaults except fo
     - RYLR998 firmware disallows setting SF higher than 9 without increasing bandwidth, which is detrimental to reliability
     - Documentation for programmed preamble in not very specific, but through trial and error I found no ill effects from maxing it out at 24, which the RYLR998 manual states should have the lowest chance of losing data
     - Configure with `AT+PARAMETER=9,7,4,24`
-
- ### Keypad Matrix Legend
-![Keypad Matrix Legend](https://raw.githubusercontent.com/rwinkhart/LoRaComm/main/big-resources/keypad.webp)
-
 # Software Guide
 ### Arduino Boards
 #### Dependencies
@@ -85,9 +81,3 @@ After typing your desired input, **you must follow it up with the "space" key to
 
 Once you are ready to send your message, press the "->" key. Once the message is verified to have been received by the LoRa peer, the message will clear from the LCD.
 If the message never clears from the LCD, either the message itself or the peer verification was lost in transit. Simply press send again (the peer will *not* display duplicate messages when just the verification was lost).
-
-# Demonstration of Physical Build
-Coming soon
-
-# Research documentation
-To be published upon completion of university course
